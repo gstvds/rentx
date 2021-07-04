@@ -4,7 +4,7 @@ import { RFValue } from 'react-native-responsive-fontsize';
 
 import Logo from '../../assets/logo.svg';
 
-import { Container, Header, HeaderContent, TotalCars } from './styles';
+import { Container, Header, HeaderContent, TotalCars, CarList } from './styles';
 
 import { Car } from '../../components/Car';
 
@@ -21,14 +21,20 @@ export function Home() {
         </HeaderContent>
       </Header>
 
-      <Car
-        brand="audi"
-        name="RS 5 Coupé"
-        thumbnail="https://freepngimg.com/thumb/audi/35227-5-audi-rs5-red.png"
-        rent={{
-          period: 'Ao dia',
-          price: 120,
-        }}
+      <CarList
+        data={[1, 2, 3, 4, 5, 6, 7]}
+        renderItem={({ item }) => (
+          <Car
+            brand="audi"
+            name="RS 5 Coupé"
+            thumbnail="https://freepngimg.com/thumb/audi/35227-5-audi-rs5-red.png"
+            rent={{
+              period: 'Ao dia',
+              price: 120,
+            }}
+          />
+        )}
+        keyExtractor={(item) => String(item)}
       />
     </Container>
   );
