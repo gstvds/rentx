@@ -8,7 +8,7 @@ import { CarDTO } from '../../dtos/CarDTO';
 
 import Logo from '../../assets/logo.svg';
 
-import { Container, Header, HeaderContent, TotalCars, CarList } from './styles';
+import { Container, Header, HeaderContent, TotalCars, CarList, MyCarsButton, MyCarsButtonIcon } from './styles';
 
 import { Car } from '../../components/Car';
 import { Load } from '../../components/Load';
@@ -20,6 +20,10 @@ export function Home() {
 
   function handleCarDetails(car: CarDTO) {
     navigation.navigate('CarDetails', { car });
+  }
+
+  function handleOpenMyCars() {
+    navigation.navigate('MyCars');
   }
 
   useEffect(() => {
@@ -65,6 +69,10 @@ export function Home() {
           />
         )
       }
+
+      <MyCarsButton onPress={handleOpenMyCars}>
+        <MyCarsButtonIcon name="ios-car-sport" />
+      </MyCarsButton>
     </Container>
   );
 }
