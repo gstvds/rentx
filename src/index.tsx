@@ -10,6 +10,7 @@ import theme from './global/styles/theme';
 import { Home } from './pages/Home';
 import { CarDetails } from './pages/CarDetails';
 import { Scheduling } from './pages/Scheduling';
+import { SchedulingDetails } from './pages/SchedulingDetails';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -26,7 +27,7 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Scheduling />
+      <SchedulingDetails />
     </ThemeProvider>
   );
 }
