@@ -1,6 +1,7 @@
 import React from 'react';
 import { StatusBar } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
+import { useNavigation } from '@react-navigation/native';
 
 import Logo from '../../assets/logo.svg';
 
@@ -9,6 +10,12 @@ import { Container, Header, HeaderContent, TotalCars, CarList } from './styles';
 import { Car } from '../../components/Car';
 
 export function Home() {
+  const navigation = useNavigation();
+
+  function handleCarDetails() {
+    navigation.navigate('CarDetails');
+  }
+
   return (
     <Container>
       <StatusBar barStyle="light-content" backgroundColor="transparent" translucent />
@@ -32,6 +39,7 @@ export function Home() {
               period: 'Ao dia',
               price: 120,
             }}
+            onPress={handleCarDetails}
           />
         )}
         keyExtractor={(item) => String(item)}

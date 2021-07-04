@@ -1,5 +1,6 @@
 import React from 'react';
 import { StatusBar } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import {
   Container,
@@ -20,11 +21,17 @@ import { Button } from '../../components/Button';
 import { Calendar } from '../../components/Calendar';
 
 export function Scheduling() {
+  const navigation = useNavigation();
+
+  function handleConfirmRental() {
+    navigation.navigate('SchedulingDetails');
+  }
+
   return (
     <Container>
       <StatusBar barStyle="light-content" translucent backgroundColor="transparent" />
       <Header>
-        <BackButton color="shape" onPress={() => null} />
+        <BackButton color="shape" onPress={() => navigation.goBack()} />
 
         <Title>
           Escolha uma{'\n'}data de início e{'\n'}fim do aluguel
@@ -47,7 +54,7 @@ export function Scheduling() {
       </Content>
 
       <Footer>
-        <Button title="Confirmar" />
+        <Button title="Confirmar" onPress={handleConfirmRental} />
       </Footer>
     </Container>
   );

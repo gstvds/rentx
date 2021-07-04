@@ -1,6 +1,7 @@
 import React from 'react';
 import { Feather } from '@expo/vector-icons';
 import { RFValue } from 'react-native-responsive-fontsize';
+import { useNavigation } from '@react-navigation/native';
 
 import { useTheme } from 'styled-components';
 
@@ -44,10 +45,16 @@ import { Button } from '../../components/Button';
 
 export function SchedulingDetails() {
   const theme = useTheme();
+  const navigation = useNavigation();
+
+  function handleConfirm() {
+    navigation.navigate('SchedulingComplete');
+  }
+
   return (
     <Container>
       <Header>
-        <BackButton onPress={() => null} />
+        <BackButton onPress={() => navigation.goBack()} />
       </Header>
 
       <SliderContainer>
@@ -96,18 +103,18 @@ export function SchedulingDetails() {
             <DateValue>20/06/2021</DateValue>
           </DateInfo>
         </RentalPeriod>
-      
-      <RentalPrice>
-        <RentalPriceLabel>TOTAL</RentalPriceLabel>
-        <RentalPriceDetails>
-          <RentalPriceQuota>R$ 580 x3 diárias</RentalPriceQuota>
-          <RentalPriceTotal>R$ 2.900</RentalPriceTotal>
-        </RentalPriceDetails>
-      </RentalPrice>
+
+        <RentalPrice>
+          <RentalPriceLabel>TOTAL</RentalPriceLabel>
+          <RentalPriceDetails>
+            <RentalPriceQuota>R$ 580 x3 diárias</RentalPriceQuota>
+            <RentalPriceTotal>R$ 2.900</RentalPriceTotal>
+          </RentalPriceDetails>
+        </RentalPrice>
       </Content>
 
       <Footer>
-        <Button title="Confirmar" />
+        <Button title="Alugar agora" color="success" onPress={handleConfirm} />
       </Footer>
     </Container>
   );
