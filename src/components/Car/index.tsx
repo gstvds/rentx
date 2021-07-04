@@ -1,6 +1,8 @@
 import React from 'react';
 import { RectButtonProps } from 'react-native-gesture-handler';
 
+import { CarDTO } from '../../dtos/CarDTO';
+
 import Gasoline from '../../assets/gasoline.svg';
 
 import {
@@ -17,26 +19,20 @@ import {
 } from './styles';
 
 interface CarProps extends RectButtonProps {
-  brand: string;
-  name: string;
-  rent: {
-    period: string;
-    price: number;
-  };
-  thumbnail: string;
+  data: CarDTO
 }
 
-export function Car({ brand, name, rent, thumbnail, ...rest }: CarProps) {
+export function Car({ data, ...rest }: CarProps) {
   return (
     <Container {...rest}>
       <Details>
-        <Brand>{brand}</Brand>
-        <Name>{name}</Name>
+        <Brand>{data.brand}</Brand>
+        <Name>{data.name}</Name>
 
         <About>
           <Rent>
-            <Period>{rent.period}</Period>
-            <Price>{Intl.NumberFormat('pt-BR', { currency: 'BRL', style: 'currency' }).format(rent.price)}</Price>
+            <Period>{data.rent.period}</Period>
+            <Price>{Intl.NumberFormat('pt-BR', { currency: 'BRL', style: 'currency' }).format(data.rent.price)}</Price>
           </Rent>
 
           <Type>
@@ -45,7 +41,7 @@ export function Car({ brand, name, rent, thumbnail, ...rest }: CarProps) {
         </About>
       </Details>
 
-      <CarImage source={{ uri: thumbnail }} resizeMode="contain" />
+      <CarImage source={{ uri: data.thumbnail }} resizeMode="contain" />
     </Container>
   );
 }
