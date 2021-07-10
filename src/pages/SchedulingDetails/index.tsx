@@ -65,14 +65,21 @@ export function SchedulingDetails() {
 
   async function handleConfirm() {
     try {
-      const schedule = await api.get(`/schedules/${car.id}`);
+      const schedule = await api.get(`/schedules_bycars/${car.id}`);
 
       const unavailable_dates = [
         ...schedule.data.unavailable_dates,
         ...dates,
       ];
 
-      await api.put(`/schedules/${car.id}`, {
+      await api.post('schedules_byuser', {
+        user_id: 1,
+        car,
+        startDate: rentalPeriod.start,
+        endDate: rentalPeriod.end,
+      });
+
+      await api.put(`/schedules_bycars/${car.id}`, {
         id: car.id,
         unavailable_dates,
       });
