@@ -25,7 +25,7 @@ import {
 
 import { BackButton } from '../../components/BackButton';
 import { Car } from '../../components/Car';
-import { Load } from '../../components/Load';
+import { AnimatedLoad } from '../../components/AnimatedLoad';
 
 interface CarProps {
   car: CarDTO;
@@ -72,7 +72,7 @@ export function MyCars() {
 
         <Subtitle>Conforto, segurança e praticidade.</Subtitle>
       </Header>
-      {loading ? <Load /> : (
+      {loading ? <AnimatedLoad /> : (
         <Content>
           <Appointments>
             <AppointmentsTitle>Agendamentos feitos</AppointmentsTitle>

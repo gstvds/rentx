@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { StatusBar, Dimensions } from 'react-native';
+import { StatusBar, Dimensions, BackHandler } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { useNavigation } from '@react-navigation/native';
 import { RectButton, PanGestureHandler } from 'react-native-gesture-handler';
@@ -16,6 +16,7 @@ import { Container, Header, HeaderContent, TotalCars, CarList, MyCarsButton, MyC
 
 import { Car } from '../../components/Car';
 import { Load } from '../../components/Load';
+import { AnimatedLoad } from '../../components/AnimatedLoad';
 
 export function Home() {
   const navigation = useNavigation();
@@ -69,21 +70,27 @@ export function Home() {
     fetchCars();
   }, []);
 
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', () => true);
+  }, []);
+
   return (
     <Container>
       <StatusBar barStyle="light-content" backgroundColor="transparent" translucent />
       <Header>
         <HeaderContent>
           <Logo width={RFValue(108)} height={RFValue(12)} />
-          <TotalCars>
-            Total de {cars.length} carros
-          </TotalCars>
+          {!loading && (
+            <TotalCars>
+              Total de {cars.length} carros
+            </TotalCars>
+          )}
         </HeaderContent>
       </Header>
 
       {
         loading ? (
-          <Load />
+          <AnimatedLoad />
         ) : (
           <CarList
             data={cars}
